@@ -38,18 +38,24 @@ def initTeleop():
 	vel_pub = rospy.Publisher('robot_velocity', Twist, queue_size=10)
 	rospy.Subscriber("/turtle1/cmd_vel", Twist, turtle_teleop_callback)
 	rospy.loginfo('Teleop Node Initialised...')
+	rate = rospy.Rate(10)
+	stop_flag = False
 	while(True):
 		if update_flag:
 			rospy.loginfo(twist.linear.x)	
 			rospy.loginfo(twist.linear.y)	
 			vel_pub.publish(twist)
 			update_flag = False
-		else
+			stop_flag = True
+
+		else stop_flag:
 			twist.linear.x = 0
 			twist.linear.y = 0
 			rospy.loginfo(twist.linear.x)	
 			rospy.loginfo(twist.linear.y)
 			vel_pub.publish(twist)
+			stop_flag = False
+		rate.sleep()
 		
 	rospy.spin()
 
