@@ -48,7 +48,7 @@ def initTeleop():
 			update_flag = False
 			stop_flag = True
 
-		else stop_flag:
+		elif stop_flag:
 			twist.linear.x = 0
 			twist.linear.y = 0
 			rospy.loginfo(twist.linear.x)	
@@ -57,9 +57,6 @@ def initTeleop():
 			stop_flag = False
 		rate.sleep()
 		
-	rospy.spin()
-
-
  
 if __name__ == '__main__':
 	initTeleop()
