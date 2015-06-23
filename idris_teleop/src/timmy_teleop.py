@@ -21,10 +21,10 @@ def turtle_teleop_callback(data):
 	elif data.linear.x == -2.0:
 		twist.linear.x = -speed
 		twist.linear.y = -speed
-	elif data.angular.z == 2.0:
+	elif data.angular.z == -2.0:
 		twist.linear.x = -speed
 		twist.linear.y = speed
-	elif data.angular.z == -2.0:
+	elif data.angular.z == 2.0:
 		twist.linear.x = speed
 		twist.linear.y = -speed	
 	update_flag = True
