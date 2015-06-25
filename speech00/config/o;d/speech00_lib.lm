@@ -1,0 +1,108 @@
+Language model created by QuickLM on Wed May 27 12:15:40 EDT 2015
+Copyright (c) 1996-2010 Carnegie Mellon University and Alexander I. Rudnicky
+
+The model is in standard ARPA format, designed by Doug Paul while he was at MITRE.
+
+The code that was used to produce this language model is available in Open Source.
+Please visit http://www.speech.cs.cmu.edu/tools/ for more information
+
+The (fixed) discount mass is 0.5. The backoffs are computed using the ratio method.
+This model based on a corpus of 16 sentences and 22 words
+
+\data\
+ngram 1=22
+ngram 2=36
+ngram 3=27
+
+\1-grams:
+-0.8751 </s> -0.3010
+-0.8751 <s> -0.2389
+-1.7782 ARE -0.2937
+-2.0792 BACKWARD -0.2389
+-2.0792 DOWN -0.2389
+-2.0792 FOLLOW -0.2389
+-2.0792 FORWARD -0.2389
+-1.7782 LEFT -0.2389
+-2.0792 ME -0.2389
+-1.7782 MOVE -0.2937
+-1.7782 RIGHT -0.2389
+-1.6021 ROTATE -0.2218
+-2.0792 SLEEP -0.2389
+-2.0792 SLOW -0.2974
+-2.0792 SPEED -0.2974
+-2.0792 STOP -0.2389
+-2.0792 TIMMY -0.2389
+-1.7782 TURN -0.2863
+-2.0792 UP -0.2389
+-2.0792 WHAT -0.2937
+-2.0792 WHO -0.2937
+-1.7782 YOU -0.2389
+
+\2-grams:
+-1.5051 <s> FOLLOW 0.0000
+-1.5051 <s> ME 0.0000
+-1.2041 <s> MOVE 0.0000
+-1.0280 <s> ROTATE 0.0000
+-1.5051 <s> SLEEP 0.0000
+-1.5051 <s> SLOW 0.0000
+-1.5051 <s> SPEED 0.0000
+-1.5051 <s> STOP 0.0000
+-1.5051 <s> TIMMY 0.0000
+-1.2041 <s> TURN 0.0000
+-1.5051 <s> WHAT 0.0000
+-1.5051 <s> WHO 0.0000
+-0.3010 ARE YOU 0.0000
+-0.3010 BACKWARD </s> -0.3010
+-0.3010 DOWN </s> -0.3010
+-0.3010 FOLLOW </s> -0.3010
+-0.3010 FORWARD </s> -0.3010
+-0.3010 LEFT </s> -0.3010
+-0.3010 ME </s> -0.3010
+-0.6021 MOVE BACKWARD 0.0000
+-0.6021 MOVE FORWARD 0.0000
+-0.3010 RIGHT </s> -0.3010
+-0.7782 ROTATE </s> -0.3010
+-0.7782 ROTATE LEFT 0.0000
+-0.7782 ROTATE RIGHT 0.0000
+-0.3010 SLEEP </s> -0.3010
+-0.3010 SLOW DOWN 0.0000
+-0.3010 SPEED UP 0.0000
+-0.3010 STOP </s> -0.3010
+-0.3010 TIMMY </s> -0.3010
+-0.6021 TURN LEFT 0.0000
+-0.6021 TURN RIGHT 0.0000
+-0.3010 UP </s> -0.3010
+-0.3010 WHAT ARE 0.0000
+-0.3010 WHO ARE 0.0000
+-0.3010 YOU </s> -0.3010
+
+\3-grams:
+-0.3010 <s> FOLLOW </s>
+-0.3010 <s> ME </s>
+-0.6021 <s> MOVE BACKWARD
+-0.6021 <s> MOVE FORWARD
+-0.7782 <s> ROTATE </s>
+-0.7782 <s> ROTATE LEFT
+-0.7782 <s> ROTATE RIGHT
+-0.3010 <s> SLEEP </s>
+-0.3010 <s> SLOW DOWN
+-0.3010 <s> SPEED UP
+-0.3010 <s> STOP </s>
+-0.3010 <s> TIMMY </s>
+-0.6021 <s> TURN LEFT
+-0.6021 <s> TURN RIGHT
+-0.3010 <s> WHAT ARE
+-0.3010 <s> WHO ARE
+-0.3010 ARE YOU </s>
+-0.3010 MOVE BACKWARD </s>
+-0.3010 MOVE FORWARD </s>
+-0.3010 ROTATE LEFT </s>
+-0.3010 ROTATE RIGHT </s>
+-0.3010 SLOW DOWN </s>
+-0.3010 SPEED UP </s>
+-0.3010 TURN LEFT </s>
+-0.3010 TURN RIGHT </s>
+-0.3010 WHAT ARE YOU
+-0.3010 WHO ARE YOU
+
+\end\

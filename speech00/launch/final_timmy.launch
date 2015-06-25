@@ -1,0 +1,9 @@
+<launch>
+ 
+  <include file="$(find speech00)/launch/speech_timmy.launch"/>
+ 
+  <node name="soundplay_node" pkg="sound_play" type="soundplay_node.py"/>  
+ 
+  <node name="control_voz" pkg="speech00" type="control_voz" />
+ 
+</launch>

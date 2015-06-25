@@ -1,0 +1,8 @@
+<launch>
+ 
+  <node name="recognizer" pkg="pocketsphinx" type="recognizer.py" output="screen">
+    <param name="lm" value="$(find speech00)/config/speech00_lib.lm"/>
+    <param name="dict" value="$(find speech00)/config/speech00_lib.dic"/>
+  </node>
+ 
+</launch>
