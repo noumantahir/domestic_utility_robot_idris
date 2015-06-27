@@ -13,6 +13,7 @@
   float angular_vel = 0.0;
   std_msgs::String comando_voz;  
   ros::Publisher follow_it;
+  ros::Publisher register_face_pub;
  
   void sleepok(int t, ros::NodeHandle &n)
   {
@@ -37,7 +38,7 @@
 		ROS_INFO("timmy detected");
                                
         }
-        else if (::comando_voz.data == "slebhijby")
+        else if (::comando_voz.data == "sleep")
         {
                 inicio = 0;
                                
@@ -219,21 +220,25 @@
 				else if(::comando_voz.data == "follow me"){
 					
 					sleepok(2, n);
-					std_msgs::Bool c;
-					c.data = 1;
-					follow_it.publish(c);
+					std_msgs::Bool shouldFollow;
+					shouldFollow.data = 1;
+					follow_it.publish(shouldFollow);
+					inicio=0;
 					
 				}
 				else if(::comando_voz.data == "sleep")
 				{
-					std_msgs::Bool c;
-					c.data = 0;
-					follow_it.publish(c);
+					std_msgs::Bool shouldFollow;
+					shouldFollow.data = 0;
+					follow_it.publish(shouldFollow);
+					inicio=0;
 				}
 				else if(::comando_voz.data == "register")
 				{
-					c.data = 0;
-					follow_it.publish(c);
+					//c.data = 0;
+					std_msgs::String registerName;
+					registerName.data = "john"
+					register_face_pub.publish(c);
 				}
                                                        
                                                                                                               
@@ -254,8 +259,7 @@
 
 	follow_it=n.advertise<std_msgs::Bool>("follow_command", 1);
 
-
-             
+	register_face_pub = n.advertise<std_msgs::String>("register_face", 1);
        
         ros::Rate loop_rate(10);
        
