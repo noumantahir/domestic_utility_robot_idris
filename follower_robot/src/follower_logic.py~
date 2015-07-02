@@ -36,11 +36,12 @@ def user_lost_id_callback(data):
 	global userID
 	global shouldFollow
 	global vel_pub
+	global isCallibrated
 	if userID == data.data:
 		rospy.loginfo('User Lost Abandoning Follow')
 		global voice_pub
 		userID = 0
-		iscallibrated = False
+		isCallibrated = False
 		twist = Twist()
 		twist.linear.x = 0
 		twist.linear.y = 0		
@@ -58,6 +59,7 @@ def follow_command_callback(data):
 	global shouldFollow
 	global voice_pub
 	global vel_pub
+	global isCallibrated
 	shouldFollow = data.data
 	if shouldFollow:
 		if not isCallibrated:
