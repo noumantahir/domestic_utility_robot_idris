@@ -1,0 +1,25 @@
+<launch>
+ 
+  <include file="$(find speech00)/launch/speech_timmy.launch"/>
+  
+  <include file="$(find openni_launch)/launch/openni.launch"/>
+ 
+  <node name="soundplay_node" pkg="sound_play" type="soundplay_node.py"/>  
+ 
+  <node name="control_voz" pkg="speech00" type="control_voz" />
+	
+  <node name="openni_tracker" pkg="openni_tracker" type="openni_tracker" />
+
+  <node name="follower_logic" pkg="follower_robot" type="follower_logic.py" />
+
+  <node name="robot_voice" pkg="follower_robot" type="robot_voice.py" />
+
+  <node name="serial_node" pkg="rosserial_python" type="serial_node.py" args="/dev/ttyACM1" />
+
+  <node name="Fserver" pkg="face_recognition" type="Fserver" />
+
+  <node name="Fclient" pkg="face_recognition" type="Fclient" />
+
+  <node name="android_interface_node" pkg="idris_teleop" type="android_interface_node.py" />
+ 
+</launch>

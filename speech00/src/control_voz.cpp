@@ -38,188 +38,17 @@
 		ROS_INFO("timmy detected");
                                
         }
-        else if (::comando_voz.data == "sleep")
+     /*   else if (::comando_voz.data == "sleep")
         {
                 inicio = 0;
                                
         }
+*/
         else if (inicio == 1)
         {
-                if (::comando_voz.data == "stop")
-                {
-                        ::linear_vel = 0.0;
-                        ::angular_vel = 0.0;
-			ROS_INFO("Applying Brakes. Halted");
-		        voz_robot.say("Applying Brakes. Halted");
-			sleepok(4, n);
-                       
-                }
-                else if (::comando_voz.data == "move forward")
-                {
-			::linear_vel = 0.1;
-                        ::angular_vel = 0.0;
-                       ROS_INFO("Aye AYe Sir, Moving Forward");
-		       voz_robot.say("Aye AYe Sir, Moving Forward");
-			sleepok(4, n);
-                        
-                       
-                }
-                else if (::comando_voz.data == "move backward")
-                {
-			::linear_vel = -0.1;
-                        ::angular_vel = 0.0;
-                       ROS_INFO("Aye AYe Sir, Moving Reverse");
-		       voz_robot.say("Aye AYe Sir, Moving Reverse");
-			sleepok(4, n);
-                        
-                       
-                }      
-                else if (::comando_voz.data == "turn left")
-                {
-			ROS_INFO("Turning Left Now");
-		        voz_robot.say("Turning Left Now");
-			sleepok(4, n);
-                        if (::angular_vel <= 0 || ::rotate == 1)
-                        {
-                                ::angular_vel = 0.1;
-                               
-                                ::rotate = 0;
-                                ::turn = 1;    
-                                
-                        }
-                        else
-                        {
-                       
-                                ::angular_vel = ::angular_vel + 0.1;
-
-                        }
-                }
-                else if (::comando_voz.data == "turn right")
-                {
-			ROS_INFO("Turning Right Now");
-		        voz_robot.say("Turning Right Now");
-			sleepok(4, n);
-                        if (::angular_vel >= 0 || ::rotate == 1)
-                        {
-                                ::angular_vel = -0.1;
-                               
-                                ::rotate = 0;
-                                ::turn = 1;                            
-                        }
-                        else
-                        {
-               
-                                 ::angular_vel = ::angular_vel - 0.1;
-
-                        }
-                }
-                else if (::comando_voz.data == "rotate left")
-                {
-			ROS_INFO("Rotating Counter Clockwise");
-		        voz_robot.say("Rotating Counter Clockwise");
-			sleepok(4, n);
-                        if (::angular_vel <= 0 || ::turn == 1)
-                        {
-                                ::angular_vel = 0.1;
-                               
-                                ::turn = 0;
-                                ::rotate = 1;
-                        }
-                       
-                        ::linear_vel = 0.0;
-                       
-                }
-                else if (::comando_voz.data == "rotate right")
-                {
-			ROS_INFO("Rotating Clockwise");
-		        voz_robot.say("Rotating Clockwise");
-			sleepok(4, n);
-                        if (::angular_vel >= 0 || ::turn == 1)
-                        {
-                                ::angular_vel = -0.1;
-                               
-                                ::turn = 0;
-                                ::rotate = 1;                          
-                        }
-                       
-                        ::linear_vel = 0.0;
-
-                }              
-                else if (::comando_voz.data == "speed up")                             
-                {
-			ROS_INFO("Increasing my speed");
-		        voz_robot.say("Increasing my speed");
-			sleepok(4, n);
-                        if (::linear_vel == 0)
-                        {
-                                if (::angular_vel > 0 && ::rotate == 1)
-                                {
-                                        ::angular_vel= ::angular_vel + 0.05;
-                                }
-                                else if (::rotate == 1)
-                                {
-                                        ::angular_vel = ::angular_vel - 0.05;
-                                }                      
-                        }
-                        else
-                        {
-                                if (::linear_vel > 0)
-                                {
-                                        ::linear_vel = ::linear_vel + 0.05;
-                                }
-                                else
-                                {
-                                        ::linear_vel = ::linear_vel - 0.05;
-                                }
-                        }
-                }
-                else if (::comando_voz.data == "slow down")                            
-                {
-			ROS_INFO("Decreasing my speed");
-		        voz_robot.say("Decreasing my speed");
-			sleepok(4, n);
-                        if (::linear_vel == 0)
-                        {
-                                if (::angular_vel > 0 && ::rotate == 1)
-                                {
-                                        ::angular_vel = ::angular_vel - 0.05;
-                                }
-                                else if (::rotate == 1)
-                                {
-                                        ::angular_vel = ::angular_vel + 0.05;
-                                }                                      
-                        }
-                        else
-                        {
-                                if (::linear_vel > 0)
-                                {
-                                        ::linear_vel = ::linear_vel - 0.05;
-                                }
-                                else
-                                {
-                                        ::linear_vel = ::linear_vel + 0.05;
-                                }                      
-                        }
-                }
-				else if(::comando_voz.data == "what are you"){
-					ROS_INFO("I am ROS Based robot, a part of idris system.");
-					voz_robot.say("I am ROS Based robot, a part of idris system.");
-					sleepok(4, n);
+         			if(::comando_voz.data == "follow me"){
 					
-				}
-				else if(::comando_voz.data == "who are you"){
-					ROS_INFO("I am Timmy.");
-					voz_robot.say("I am Timmy.");
-					sleepok(4, n);
-				}
-				else if(::comando_voz.data == "how are you"){
-					ROS_INFO("I am fine and working.");
-					voz_robot.say("I am fine and working.");
-					sleepok(4, n);
-				}
-				else if(::comando_voz.data == "follow me"){
-					
-					sleepok(2, n);
+			//		sleepok(5, n);
 					std_msgs::Bool shouldFollow;
 					shouldFollow.data = 1;
 					follow_it.publish(shouldFollow);
@@ -232,13 +61,14 @@
 					shouldFollow.data = 0;
 					follow_it.publish(shouldFollow);
 					inicio=0;
+					stop=0;
 				}
 				else if(::comando_voz.data == "register")
 				{
 					//c.data = 0;
 					std_msgs::String registerName;
-					registerName.data = "john"
-					register_face_pub.publish(c);
+					registerName.data = "john";
+				//	register_face_pub.publish(c);
 				}
                                                        
                                                                                                               
@@ -267,7 +97,8 @@
        
         sound_play::SoundClient voz_robot;
        
-                sleepok(1, n);        
+        sleepok(4, n); 
+     
        
         while (ros::ok())
         {              
@@ -278,7 +109,7 @@
                        
                         if (::comando_voz.data == "timmy" && ::start == 0)
                         {
-                                voz_robot.say("Ass slam aly kum sir. How can I be of assistance");
+                                voz_robot.say("yes sir");
 				ROS_INFO("Ass slam aly kum sir. How can I be of assistance");
                                
                                 sleepok(4, n);
@@ -290,7 +121,11 @@
                         {
                                 voz_robot.say("Good Bye Sir");
 				ROS_INFO("Good Bye Sir");
-                               
+                               std_msgs::Bool shouldFollow;
+				shouldFollow.data = 0;
+				follow_it.publish(shouldFollow);
+					
+
                                 sleepok(4, n);
                                
                                 ::stop = 1;
