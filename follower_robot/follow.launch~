@@ -1,0 +1,3 @@
+    <launch>
+            <node name="robot_state_publisher" pkg="follower_robot" type="extract_pose" />		
+    </launch>

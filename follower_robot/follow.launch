@@ -1,0 +1,3 @@
+    <launch>
+            <node name="follow_me" pkg="follower_robot" type="follow_bridge" />		
+    </launch>

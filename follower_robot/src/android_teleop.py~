@@ -1,0 +1,22 @@
+#!/usr/bin/env python
+import rospy, os, sys
+from std_msgs.msg import String
+
+def android_data_callback(data):
+        if str_msg.data == "move_command:forward": 
+		driveDirect(200, 200)
+        if str_msg.data == "move_command:backward": 
+		driveDirect(-200, -200)
+        if( str_msg.data == "move_command:stop": 
+		driveDirect(0, 0)
+        if( str_msg.data == "move_command:turn_clockwise"):
+		driveDirect(200, -200)
+        if( str_msg.data == "move_command:turn_anticlock":
+		driveDirect(-200, 200);
+
+def driveDirect:
+
+if __name__ == '__main__':
+	rospy.init_node('android_interface_node', anonymous=True)
+	rospy.Subscriber("recognizer/output", String, android_data_callback)
+	rospy.spin()

@@ -1,0 +1,91 @@
+#!/usr/bin/env python
+import rospy
+from geometry_msgs.msg import Twist
+import math
+import tf
+from tf.transformations import euler_from_quaternion
+ 
+ 
+def startFollow():
+	rospy.init_node('extract_velocity', anonymous=True)
+	pub = rospy.Publisher('robot_velocity', Twist, queue_size=10)
+	rate = rospy.Rate(10.0)
+	listener = tf.TransformListener()
+    	while not rospy.is_shutdown():
+		try:
+			(trans, rot) = listener.lookupTransform('openni_depth_frame','torso_1', rospy.Time(0)) 
+			#rospy.loginfo("checking for torso")
+		except (tf.LookupException, tf.ConnectivityException):
+            		continue
+		#conversion to millimeters
+		pose_x = trans[0]*1000
+		pose_x = int(pose_x)
+		pose_y = trans[1]*1000
+		pose_y = int(pose_y)
+
+		#printing data on terminal
+        	print 'Torso X: ',pose_x ,"  Torso Y: ", pose_y
+		twist = Twist()
+
+		#setting velocity parameters
+		robot_radius = 150
+		vel = 100
+		kd = 3
+		kp = 0.002
+		target_dist = 950
+
+		#add pid here
+		ep = pose_x - target_dist
+		vel = (kp * ep) * vel
+		radius = ((pose_x * pose_x) + (pose_y * pose_y)) / (2 * pose_y)
+		factor = (robot_radius * kd)/radius
+
+		#setting left and right wheel velocities
+		if vel > 0:
+			if pose_y == 0:
+				vel_left = vel
+				velright = vel
+			else:			
+				vel_left = vel * (1 + factor ) 
+				vel_right = vel * (1 - factor)
+
+		elif vel < 0:
+			if pose_y == 0:
+				vel_left = vel
+				velright = vel
+			else:
+				vel_left = vel * (1 - factor ) #reverse drive circle inverses
+				vel_right = vel * (1 + factor)
+		else:
+			if pose_y == 0:
+				vel_right = 0
+				vel_left = 0
+		#spinning robot to catch user
+			elif pose_y > 0:
+				vel_right = -100
+				vel_left = 100
+			elif pose_y < 0:
+				vel_right = 100
+				vel_left = -100
+
+		#setting upper and lower speed limits
+		if vel_left > 500:
+			vel_left = 500
+		elif vel_left < 50:
+			vel_left = 500
+		if vel_right > 500:
+			vel_right = 500
+		elif vel_right < 50:
+			vel_right = 50
+		
+		#feeding speed to message
+		twist.linear.x = vel_left
+		twist.linear.y = vel_right
+		pub.publish(twist)
+		rate.sleep()
+
+         
+ 
+if __name__ == '__main__':
+	
+	startFollow()
