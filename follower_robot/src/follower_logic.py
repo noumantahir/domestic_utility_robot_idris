@@ -58,6 +58,7 @@ def follow_command_callback(data):
 	global shouldFollow
 	global voice_pub
 	global vel_pub
+	global isCallibrated
 	shouldFollow = data.data
 	if shouldFollow:
 		if not isCallibrated:
